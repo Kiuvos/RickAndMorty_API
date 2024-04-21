@@ -14,12 +14,24 @@
     <div class="header">
 		<div class="img"><a href=""><img src="assets/icons/logo.jpg" ></a></div>
         <div class="name" id="name">						
-            <a href="index.html"><h1>Rick and Morty</h1></a>
+            <h1><a href="index.html">Rick and Morty</a></h1>
         </div>
     </div>
 
+	<main class="container">
+		<!-- Filtro -->
+			<div class="form-floating filter">
+				<select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+					<option selected>Todos</option>
+					<option value="1">One</option>
+					<option value="2">Two</option>
+					<option value="3">Three</option>
+				</select>
+				<label for="floatingSelect">Seleccionar personaje</label>
+			</div>
+		<div class="container card-container"" id="card-container"></div>
+	</main>
 	
-	<div class="container" id="card-container"></div>
     
 
     <footer>

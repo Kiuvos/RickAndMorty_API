@@ -4,7 +4,9 @@ window.onload = (event) => {
 
 const apiurl = 'https://rickandmortyapi.com/api/character';
 var results = []
-const card_container = document.getElementById("card-container")
+const card_container = document.getElementById("card-container");
+const filter = document.getElementById("floatingSelect");
+filter.innerHTML = `<option value="0" selected>Todos</option>`;
 
 
 const buscarDato = async () => {
@@ -15,33 +17,30 @@ const buscarDato = async () => {
         let listado = '';
         let personaje = '';
 
-        for (let i = 0; i < 18; i++) {
+        for (let i = 0; i < results.length; i++) {
             const nombre = results[i].name;
             const descripcion = descripciones[nombre] || "Descripción no disponible";
             listado += `
-
-            <div class="card" >
-            <div class="box">
-                <img src="${results[i].image}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                    <div class="profile-name">
-                    <h5 class="card-title">${results[i].name}</h5>
-                    </div>
-                    </div>
-                    <div class="contentBx">
-                    <div class="card-body">
-                        <p class="card-text">${descripcion}</p>
-                    </div>
-                    </div>
-            </div>        
-            </div>
-        `
-            personaje += `
-            <option>${results[i].name}</option>
+                <div class="card" >
+                    <div class="box">
+                        <img src="${results[i].image}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                            <div class="profile-name">
+                            <h5 class="card-title">${results[i].name}</h5>
+                            </div>
+                            </div>
+                            <div class="contentBx">
+                            <div class="card-body">
+                                <p class="card-text">${descripcion}</p>
+                            </div>
+                            </div>
+                    </div>        
+                </div>
             `
+            personaje += `<option value="${i+1}">${results[i].name}</option>`
         }
         card_container.innerHTML = listado;
-        
+        filter.innerHTML += personaje;
     }
     catch (err) {
         console.log(err)
