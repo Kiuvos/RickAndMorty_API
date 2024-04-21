@@ -4,6 +4,7 @@ window.onload = (event) => {
 
 const apiurl = 'https://rickandmortyapi.com/api/character';
 var results = []
+let listado = '';
 const card_container = document.getElementById("card-container");
 const filter = document.getElementById("floatingSelect");
 filter.innerHTML = `<option value="0" selected>Todos</option>`;
@@ -14,7 +15,7 @@ const buscarDato = async () => {
         const res = await fetch(apiurl);
         const data = await res.json();
         results = data.results;
-        let listado = '';
+        
         let personaje = '';
 
         for (let i = 0; i < results.length; i++) {
@@ -25,14 +26,14 @@ const buscarDato = async () => {
                     <div class="box">
                         <img src="${results[i].image}" class="card-img-top" alt="...">
                             <div class="card-body">
-                            <div class="profile-name">
-                            <h5 class="card-title">${results[i].name}</h5>
-                            </div>
+                                <div class="profile-name">
+                                    <h5 class="card-title">${nombre}</h5>
+                                </div>
                             </div>
                             <div class="contentBx">
-                            <div class="card-body">
-                                <p class="card-text">${descripcion}</p>
-                            </div>
+                                <div class="card-body">
+                                    <p class="card-text">${descripcion}</p>
+                                </div>
                             </div>
                     </div>        
                 </div>
@@ -69,3 +70,34 @@ const descripciones = {
     
 
 }
+
+filter.addEventListener("change", ()=>{
+    
+    //console.log(filter.value);
+    let selectedOption = filter.value;
+
+    if (selectedOption != 0) {
+        const descripcion = descripciones[results[selectedOption-1].name] || "Descripción no disponible";
+        card_container.innerHTML = `
+            <div class="card" >
+                <div class="box">
+                    <img src="${results[selectedOption-1].image}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <div class="profile-name">
+                                <h5 class="card-title">${results[selectedOption-1].name}</h5>
+                            </div>
+                        </div>
+                        <div class="contentBx">
+                            <div class="card-body">
+                                <p class="card-text">${descripcion}</p>
+                            </div>
+                        </div>
+                </div>        
+            </div>
+        `;
+    } else {
+        card_container.innerHTML = listado;
+    }
+    
+
+});
