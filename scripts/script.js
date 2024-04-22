@@ -18,7 +18,7 @@ const buscarDato = async () => {
         
         let personaje = '';
 
-        for (let i = 0; i < results.length; i++) {
+        for (let i = 0; i < 15; i++) {
             const nombre = results[i].name;
             const descripcion = descripciones[nombre] || "Descripción no disponible";
             listado += `
