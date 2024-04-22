@@ -11,28 +11,26 @@
     <link rel="shortcut icon" href="assets/icons/logo.jpg" type="image/x-icon">
 </head>
 <body>
-    <div class="header">
-		<div class="img">
-			<a href="#">
-				<img src="assets/icons/logo.jpg" class="img-fluid">
-			</a>
-		</div>
-        <div class="name" id="name">						
-            <a href="index.html"><h3>Rick and Morty</h3></a>
-        </div>
-    </div>
+    <header>
+		<nav>
+			<div class="img">
+				<a href="#">
+					<img src="assets/icons/logo.jpg" class="img-fluid">
+				</a>
+			</div>
+			<div class="web-name" id="webName">						
+				<a href="index.html"><h3>Rick and Morty</h3></a>
+			</div>
+		</nav>
+    </header>
 
 	<main class="container">
 		<!-- Filtro -->
-			<div class="form-floating filter">
-				<select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-					<option selected>Todos</option>
-					<option value="1">One</option>
-					<option value="2">Two</option>
-					<option value="3">Three</option>
-				</select>
-				<label for="floatingSelect">Seleccionar personaje</label>
-			</div>
+		<div class="form-floating filter" data-bs-theme="dark">
+			<select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+			</select>
+			<label for="floatingSelect">Seleccionar personaje</label>
+		</div>
 		<div class="container card-container"" id="card-container"></div>
 	</main>
 	
@@ -42,15 +40,14 @@
        
 		<div class="container-footer-all">
 		 
-			 <div class="container-body">
- 
-				 <div class="colum1">
-					 <h1>Rick and Morty</h1>
-					 <p>Rick y Morty es una serie animada para adultos que sigue las aventuras de Rick Sánchez y su nieto Morty. Rick es un genio loco, un científico desquiciado, que viaja en el tiempo o entre galaxias, explorando el universo y metiéndose en problemas. Morty se suma a estas travesías que tiene el estilo de sitcom</p>
-				 </div>
- 
-				 <div class="colum2 my-sm-5 my-lg-0">
- 
+			<div class="container-body">
+
+				<div class="colum1">
+					<h1>Rick and Morty</h1>
+					<p>Rick y Morty es una serie animada para adultos que sigue las aventuras de Rick Sánchez y su nieto Morty. Rick es un genio loco, un científico desquiciado, que viaja en el tiempo o entre galaxias, explorando el universo y metiéndose en problemas. Morty se suma a estas travesías que tiene el estilo de sitcom</p>
+				</div>
+
+				<div class="colum2 my-sm-5 my-lg-0">
 					<h1>Redes Sociales</h1>
 
 					<div class="socials">
@@ -59,49 +56,46 @@
 						<a title="Instagram" href="#"target="_blank"><img src="assets/icons/instagram.png" alt="Instagram" /></a>
 						<a title="Pinterest" href="#"target="_blank"><img src="assets/icons/pinterest.png" alt="Pinterest" /></a>
 					</div>
- 
- 
-				 </div>
- 
-				 <div class="colum3">
- 
-					 <h1>Informacion Contactos</h1>
- 
-					 <div class="row2">
-						 <img src="assets/icons/home.png">
-						 <label>Barranquilla, 
-						 Colombia</label>
-					 </div>
- 
-					 <div class="row2">
-						 <img src="assets/icons/smartphone.png">
-						 <label>(+57)3016737458</label>
-					 </div>
- 
-					 <div class="row2">
-						 <img src="assets/icons/contact.png">
-						  <label><a href=""><i>Contactanos</i></a></label>
-					 </div>
- 
-				 </div>
- 
-			 </div>
-		 
-		 </div>
-		 
-		 <div class="container-footer">
-				<div class="footer">
-					 <div class="copyright">
-						<p>© 2022 Todos los Derechos Reservados | Yesid Borrero y Cano Hammer<a href=""></a></p>
-					 </div>
-					 <div class="information">
-						 <a href="">Rick y Morty</a> 
-					 </div>
-				 </div> 
-			 </div>		 
-	 </footer>
+				</div>
 
-	 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+				<div class="colum3">
+
+					<h1>Informacion Contactos</h1>
+
+					<div class="row2">
+						<img src="assets/icons/home.png">
+						<p>Barranquilla, Colombia</p>
+					</div>
+
+					<div class="row2">
+						<img src="assets/icons/smartphone.png">
+						<p>(+57)3016737458</p>
+					</div>
+
+					<div class="row2">
+						<img src="assets/icons/contact.png">
+						<p><a href="#"><i>Contactanos</i></a></p>
+					</div>
+
+				</div>
+
+			</div>
+		 
+		</div>
+		 
+		<div class="container-footer">
+			<div class="footer">
+				<div class="copyright">
+					<p>© 2022 Todos los Derechos Reservados | Yesid Borrero y Cano Hammer<a href=""></a></p>
+				</div>
+				<div class="information">
+					<a href="">Rick y Morty</a> 
+				</div>
+			</div> 
+		</div>		 
+	</footer>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="scripts/script.js"></script>
 </body>
 </html>

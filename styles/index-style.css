@@ -1,7 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&family=Orbitron:wght@400;700&family=Poppins:wght@400;700&display=swap');
 :root {
     --gradient: linear-gradient(to left top, #DD2476 10%, #FF512F 90%) !important;
-  }
+}
 *{
     border: 0;
     padding: 0;
@@ -10,38 +9,53 @@
 body{
     height: 100%;
 }
-.header{
-    top: 0;
-    width: 100%;
+
+/* ----- Header ----- */
+
+header{
     background-color: #202020;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-    padding: 1% 5%;
+    position: sticky;
+    top: 0;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+nav{
+    
+    width: 100%;
+    padding: 10px 53px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: sticky;
-    z-index: 2;
+    max-width: 1150px;
 }
 
-.header img{
+.img img{
     border-radius: 10px;
     max-width: 50px;
 }
 
-.name a{
+.web-name a{
     text-decoration: none;
     color: rgb(255, 255, 255);
 }
+
+/* ----- Main ----- */
 
 main{
     display: flex;
     flex-direction: column;
     align-items: center;
+    
 }
 
 .filter{
     width: 50%;
     margin-top: 50px;
+    color: #222;
 }
 
 .filter label {
@@ -115,6 +129,9 @@ main{
     margin-top: 50px;
     overflow-y: auto;
 }
+
+/* ----- Footer ----- */
+
 footer{
     width: 100%;
     background: #202020;
@@ -184,13 +201,13 @@ flex-direction: row;
     justify-content: space-between;
     margin: 15px 0;
 }
-.colum3 div:nth-child(3) label{
+.colum3 div:nth-child(3) p{
     margin-right: 20px;
 }
-.colum3 div:nth-child(4) label{
+.colum3 div:nth-child(4) p{
     margin-right: 38px;
 }
-.colum3 div label {
+.colum3 div p {
     margin-top: 8px;
 }
 .colum3 div img{
@@ -221,13 +238,14 @@ flex-direction: row;
     text-decoration: none;
     color: #C7C7C7;
 }
-@media screen and (max-width: 1399px) {
-    
+@media screen and (max-width: 1399px) {  
     .card{
         width: calc(100% - 30px);
         background-color: #222;
     }
 }
+
+/* ----- Media Querys ----- */
 
 @media screen and (max-width: 1200px) {
     .container{
@@ -239,12 +257,7 @@ flex-direction: row;
     .card-container{
         grid-template-columns: repeat(2, 1fr);
     }
-    .header{
-        text-align: center;
-        display: block;
-        padding: 5%;
-        width: 100%;
-    }
+    
     .logo{
         width: 50px;
         height: 50px;
@@ -275,5 +288,11 @@ flex-direction: row;
     }
     .colum2{
         margin: 15px 0;
+    }
+    nav{
+        flex-direction: column;
+    }
+    .web-name{
+        margin-top: 15px;
     }
 }

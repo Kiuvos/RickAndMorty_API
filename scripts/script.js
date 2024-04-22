@@ -1,36 +1,38 @@
-window.onload = (event) => {
-    buscarDato()
-};
+
+
 
 const apiurl = 'https://rickandmortyapi.com/api/character';
-var results = []
+var result = []
 let listado = '';
+let status = "";
 const card_container = document.getElementById("card-container");
 const filter = document.getElementById("floatingSelect");
 filter.innerHTML = `<option value="0" selected>Todos</option>`;
 
+const estado = char =>{
+    let res = "";
+    if (char.status == "Alive") {
+        res = `<span class="text-success">${char.status}</span>`;
+    } else {
+        res = `<span class="text-danger">${char.status}</span>`;
+    }
+    return res;
+};
 
 const buscarDato = async () => {
     try {
         const res = await fetch(apiurl);
         const data = await res.json();
-        results = data.results;
-        
+        result = data.results.slice(0, 15); // carga solo los 15 personajes
         let personaje = '';
-
-        for (let i = 0; i < 15; i++) {
-            const nombre = results[i].name;
+        for (let i = 0; i < result.length; i++) {
+            const nombre = result[i].name;
             const descripcion = descripciones[nombre] || "Descripción no disponible";
-            let status = "";
-            if (results[i].status == "Alive") {
-                status = `<span class="text-success">${results[i].status}</span>`;
-            } else {
-                status = `<span class="text-danger">${results[i].status}</span>`;
-            }
+            status = estado(result[i]);
             listado += `
                 <div class="card" >
                     <div class="box">
-                        <img src="${results[i].image}" class="card-img-top" alt="...">
+                        <img src="${result[i].image}" class="card-img-top" alt="...">
                         <div class="card-body">
                             <div class="profile-name">
                                 <h5 class="card-title">${nombre}</h5>
@@ -40,8 +42,8 @@ const buscarDato = async () => {
                             <div class="card-body">
                                 <p class="card-text">
                                     Estado: ${status}<br>
-                                    Especie: ${results[i].species}<br>
-                                    Genero: ${results[i].gender}<br>
+                                    Especie: ${result[i].species}<br>
+                                    Genero: ${result[i].gender}<br>
                                     <span class="desc">${descripcion}</span>
                                 </p>
                             </div>
@@ -49,7 +51,7 @@ const buscarDato = async () => {
                     </div>        
                 </div>
             `
-            personaje += `<option value="${i+1}">${results[i].name}</option>`
+            personaje += `<option value="${i+1}">${result[i].name}</option>`
         }
         card_container.innerHTML = listado;
         filter.innerHTML += personaje;
@@ -58,6 +60,7 @@ const buscarDato = async () => {
         console.log(err)
     }
 }
+buscarDato()
 
 const descripciones = {
     "Rick Sanchez": "Es un científico alcohólico y misántropo conocido por su comportamiento temerario, nihilista y su personalidad pesimista. El personaje ha sido bien recibido por su complejidad y desarrollo. Rick es un científico loco sociopático que parece conocer todo en el universo y, por lo tanto, encuentra la vida una experiencia traumática y sin sentido. A pesar de asumir que es la persona más inteligente del universo, ha habido momentos en los que se ha equivocado.",
@@ -83,16 +86,16 @@ const descripciones = {
 }
 
 filter.addEventListener("change", ()=>{
-    
-    //console.log(filter.value);
+
     let selectedOption = filter.value;
     
-
+    //Si la opción es distinta de "Todos" se remplazará todo el HTML del main por la tarjeta seleccionada
     if (selectedOption != 0) {
         let nameSelected= filter.options[selectedOption].text;
-        arrayCharacter = results.filter(ch => ch.name == nameSelected);
+        arrayCharacter = result.filter(ch => ch.name === nameSelected);
         character = arrayCharacter[0];
         //console.log(character.name);
+        status = estado(character);
         const descripcion = descripciones[character.name] || "Descripción no disponible";
         card_container.innerHTML = `
             <div class="card" >
@@ -106,7 +109,7 @@ filter.addEventListener("change", ()=>{
                     <div class="contentBx">
                         <div class="card-body">
                             <p class="card-text">
-                                Estado: ${character.status}<br>
+                                Estado: ${status}<br>
                                 Especie: ${character.species}<br>
                                 Genero: ${character.gender}
                                 <span class="desc">${descripcion}</span>
@@ -118,7 +121,7 @@ filter.addEventListener("change", ()=>{
         `;
         card_container.classList.remove("card-container");
         card_container.classList.add("card-container-selected");
-    } else {
+    } else { //De lo contrario se cargarán de nuevo todas las cartas
         card_container.innerHTML = listado;
         card_container.classList.remove("card-container-selected");
         card_container.classList.add("card-container");
