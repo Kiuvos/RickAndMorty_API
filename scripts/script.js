@@ -21,20 +21,31 @@ const buscarDato = async () => {
         for (let i = 0; i < 15; i++) {
             const nombre = results[i].name;
             const descripcion = descripciones[nombre] || "Descripción no disponible";
+            let status = "";
+            if (results[i].status == "Alive") {
+                status = `<span class="text-success">${results[i].status}</span>`;
+            } else {
+                status = `<span class="text-danger">${results[i].status}</span>`;
+            }
             listado += `
                 <div class="card" >
                     <div class="box">
                         <img src="${results[i].image}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <div class="profile-name">
+                                <h5 class="card-title">${nombre}</h5>
+                            </div>
+                        </div>
+                        <div class="contentBx">
                             <div class="card-body">
-                                <div class="profile-name">
-                                    <h5 class="card-title">${nombre}</h5>
-                                </div>
+                                <p class="card-text">
+                                    Estado: ${status}<br>
+                                    Especie: ${results[i].species}<br>
+                                    Genero: ${results[i].gender}<br>
+                                    <span class="desc">${descripcion}</span>
+                                </p>
                             </div>
-                            <div class="contentBx">
-                                <div class="card-body">
-                                    <p class="card-text">${descripcion}</p>
-                                </div>
-                            </div>
+                        </div>
                     </div>        
                 </div>
             `
@@ -75,28 +86,42 @@ filter.addEventListener("change", ()=>{
     
     //console.log(filter.value);
     let selectedOption = filter.value;
+    
 
     if (selectedOption != 0) {
-        const descripcion = descripciones[results[selectedOption-1].name] || "Descripción no disponible";
+        let nameSelected= filter.options[selectedOption].text;
+        arrayCharacter = results.filter(ch => ch.name == nameSelected);
+        character = arrayCharacter[0];
+        //console.log(character.name);
+        const descripcion = descripciones[character.name] || "Descripción no disponible";
         card_container.innerHTML = `
             <div class="card" >
                 <div class="box">
-                    <img src="${results[selectedOption-1].image}" class="card-img-top" alt="...">
+                    <img src="${character.image}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <div class="profile-name">
+                            <h5 class="card-title">${character.name}</h5>
+                        </div>
+                    </div>
+                    <div class="contentBx">
                         <div class="card-body">
-                            <div class="profile-name">
-                                <h5 class="card-title">${results[selectedOption-1].name}</h5>
-                            </div>
+                            <p class="card-text">
+                                Estado: ${character.status}<br>
+                                Especie: ${character.species}<br>
+                                Genero: ${character.gender}
+                                <span class="desc">${descripcion}</span>
+                            </p>
                         </div>
-                        <div class="contentBx">
-                            <div class="card-body">
-                                <p class="card-text">${descripcion}</p>
-                            </div>
-                        </div>
+                    </div>
                 </div>        
             </div>
         `;
+        card_container.classList.remove("card-container");
+        card_container.classList.add("card-container-selected");
     } else {
         card_container.innerHTML = listado;
+        card_container.classList.remove("card-container-selected");
+        card_container.classList.add("card-container");
     }
     
 
